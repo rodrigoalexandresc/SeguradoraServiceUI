@@ -1,0 +1,63 @@
+<div [formGroup]="form">
+  <h1>Cotação de Seguros</h1>
+  <div>
+    <h2>Dados do segurado</h2>
+    <div>
+      <label>Nome do segurado</label>
+      <div><input type="text" formControlName="Nome" [ngClass]="{'campo-invalido': form.controls['Nome'].invalid}"/></div>
+    </div>
+    <div>
+      <label>Data de nascimento</label>
+      <div><input type="date" formControlName="Nascimento" [ngClass]="{'campo-invalido': form.controls['Nascimento'].invalid}"/></div>
+    </div>    
+    <div>
+      <h3>Endereço</h3>
+      <div>
+          <label>Logradouro</label>
+          <div><input type="text" formControlName="Logradouro" /></div>
+      </div>        
+      <div>
+          <label>Bairro</label>
+          <div><input type="text" formControlName="Bairro"/></div>
+      </div>           
+      <div>
+          <label>Cidade</label>
+          <div><input type="text" formControlName="Cidade" [ngClass]="{'campo-invalido': form.controls['Cidade'].invalid}"/></div>
+      </div>           
+      <div>
+          <label>CEP</label>
+          <div><input type="text" formControlName="CEP" [ngClass]="{'campo-invalido': form.controls['CEP'].invalid}"/></div>
+      </div>                    
+    </div>        
+  </div>
+  <div>
+    <h2>Coberturas</h2>
+    <div formArrayName="Coberturas">
+      <div *ngFor="let coberturaform of coberturasform.controls; let i=index" class="cobertura">
+        <select [formControlName]="i" [name]="i" >
+          <option *ngFor="let cobertura of coberturas$ | async" value="{{cobertura.id}}">{{cobertura.nome}}</option>        
+        </select>
+        <button (click)="removerCobertura(i)">remover</button>
+      </div>
+      <a (click)="adicionarCobertura()">adicionar cobertura</a>
+    </div>
+  </div>
+  <div class="enviar">
+    <button type="submit" class="enviar" (click)="enviarClick()" [disabled]="!form.valid">Enviar</button>
+  </div>  
+</div>
+<div *ngIf="ultimaCotacao" class="ultimaCotacao">
+  <h2>Última cotação</h2>
+  <div>Prêmio": {{ultimaCotacao.premio}}</div> 
+  <div>Parcelas": {{ultimaCotacao.parcelas}}</div> 
+  <div>Valor parcela": {{ultimaCotacao.valor_Parcelas}}</div> 
+  <div>Vencimento": {{ultimaCotacao.primeiro_Vencimento}}</div> 
+  <div>Cobertura total": {{ultimaCotacao.cobertura_Total}}</div> 
+</div>
+<div *ngIf="erros" class="erros">
+    <h2>Erro ao solicitar cotação</h2>
+    <div *ngFor="let erro of erros">
+      {{erro.mensagem}}
+    </div>
+</div>
+

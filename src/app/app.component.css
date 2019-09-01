@@ -1,0 +1,47 @@
+div {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+input, select {
+    width: 25em;
+
+}
+
+input, select, button {
+    height: 2em;
+}
+
+a {
+    font-size: 80%;
+    color: blue;
+}
+
+div.enviar {
+    margin-top: 1em;
+}
+
+div.cobertura {
+    padding-bottom: 0.75em;
+}
+
+button.enviar {
+    width: 10em;
+    height: 3em;    
+}
+
+div.erros {
+    background-color: navajowhite;
+    padding: 1em;
+    margin-top: 0em 1em 1em;
+}
+
+div.ultimaCotacao {
+    background-color: lightskyblue;
+    padding: 1em;
+    margin-top: 0em 1em 1em;    
+}
+
+.campo-invalido {
+    border: 1px solid salmon;
+}
